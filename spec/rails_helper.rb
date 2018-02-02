@@ -12,4 +12,16 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = true
+
+  config.before(:suite) do
+    FactoryBot.lint
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
