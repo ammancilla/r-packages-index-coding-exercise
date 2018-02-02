@@ -23,6 +23,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails', '~> 3.7'
+  gem 'vcr', '~> 3.0'
+  gem 'webmock'
 end
 
 group :development do
