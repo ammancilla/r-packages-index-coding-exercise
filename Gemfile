@@ -7,14 +7,15 @@ end
 
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'coffee-rails', '~> 4.2'
-gem 'treetop-dcf'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.4'
 gem 'redis', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'sqlite3'
+gem 'treetop-dcf'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
