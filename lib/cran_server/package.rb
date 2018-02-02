@@ -28,15 +28,16 @@ class CranServer
     private
 
     def parse_authors(authors)
-      authors.scan(AUTHORS_REGEXP).flatten
+      authors.scan(AUTHORS_REGEXP).flatten.map { |name| { name: name } }
     end
 
     def parse_maintainer(maintainer)
+      # TODO: Support multiple maintainers
       info = maintainer.match(MAINTAINER_REGEXP)
 
-      return if info.nil?
+      return [] if info.nil?
 
-      { name: info[:name], email: info[:email] }
+      [{ name: info[:name], email: info[:email] }]
     end
 
     def description=(info)
@@ -45,7 +46,7 @@ class CranServer
         title: info['Title'],
         version: info['Version'],
         authors: parse_authors( info['Author'] ),
-        maintainer: parse_maintainer( info['Maintainer'] ),
+        maintainers: parse_maintainer( info['Maintainer'] ),
         description: info['Description'],
         publication: info['Date/Publication']
       }
